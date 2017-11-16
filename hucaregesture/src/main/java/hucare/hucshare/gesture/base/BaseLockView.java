@@ -28,11 +28,6 @@ public abstract class BaseLockView extends View implements ILockView {
         return lockState;
     }
 
-    @Override
-    public View getView() {
-        return this;
-    }
-
     public BaseLockView(Context context) {
         super(context);
     }
@@ -67,6 +62,12 @@ public abstract class BaseLockView extends View implements ILockView {
         }
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        onDestroy();
+    }
+
     public abstract void onStateError(Canvas canvas);
 
     public abstract void onStateSelect(Canvas canvas);
@@ -74,4 +75,6 @@ public abstract class BaseLockView extends View implements ILockView {
     public abstract void onStateNormal(Canvas canvas);
 
     public abstract void afterMeasure(int childWidth, int childHeight);
+
+    public abstract void onDestroy();
 }

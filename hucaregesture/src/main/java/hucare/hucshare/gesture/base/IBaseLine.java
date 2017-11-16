@@ -2,11 +2,13 @@ package hucare.hucshare.gesture.base;
 
 import android.view.ViewGroup;
 
+import java.util.List;
+
 /**
  * @author huzeliang
  */
 public interface IBaseLine {
-    void initLockViews(ViewGroup viewGroup);
+    void initLockViews(List<ILockView> lockViews, int pointWidth);
 
     void setOnGestureVerifyListener(String password, OnGestureVerifyListener onGestureVerifyListener);
 

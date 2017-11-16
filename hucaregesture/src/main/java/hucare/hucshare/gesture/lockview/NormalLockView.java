@@ -83,4 +83,9 @@ public class NormalLockView extends BaseLockView {
         radius -= strokeWidth / 2;
     }
 
+    @Override
+    public void onDestroy() {
+
+    }
+
 }

@@ -32,5 +32,5 @@ public interface ILockView {
 
     int getBottom();
 
-    View getView();
+//    View getView();
 }

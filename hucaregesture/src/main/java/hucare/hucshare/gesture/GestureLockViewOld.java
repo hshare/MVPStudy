@@ -107,7 +107,7 @@ public class GestureLockViewOld extends ViewGroup {
                 ILockView lockPointView = GestureLockHelper.getInstance().getLockView(getContext());
                 lockPointView.setId(i + 1);
                 lockViews.add(lockPointView);
-                this.addView(lockPointView.getView());
+                this.addView((View) lockPointView);
             }
         }
         if (getChildCount() > 0) {

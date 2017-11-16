@@ -18,7 +18,7 @@ import hucare.hucshare.gesture.base.ILockView;
  * @author huzeliang
  *         2017-11-14 18:27:53
  */
-public class NormalLineView extends BaseLineView {
+public class RoundNoLineView extends BaseLineView {
 
     private Path path;
     private Paint paint;
@@ -34,11 +34,12 @@ public class NormalLineView extends BaseLineView {
     private int lineAlpha = 150;
     private boolean isShowLine = true;
     private List<Integer> chooseList = new ArrayList<Integer>();
+
     public void setShowLine(boolean showLine) {
         isShowLine = showLine;
     }
 
-    public NormalLineView(Context context) {
+    public RoundNoLineView(Context context) {
         super(context);
         bringToFront();
         initPaint();
@@ -58,7 +59,7 @@ public class NormalLineView extends BaseLineView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (!isShowLine){
+        if (!isShowLine) {
             return;
         }
         // 绘制GestureLockView间的连线
@@ -104,6 +105,7 @@ public class NormalLineView extends BaseLineView {
                         // 设置指引线的起点
                         lastPathX = child.getLeft() / 2 + child.getRight() / 2;
                         lastPathY = child.getTop() / 2 + child.getBottom() / 2;
+
                         tmpTarget.x = lastPathX;
                         tmpTarget.y = lastPathY;
                         if (chooseList.size() == 1) {

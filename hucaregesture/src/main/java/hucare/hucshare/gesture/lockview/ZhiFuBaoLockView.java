@@ -34,6 +34,11 @@ public class ZhiFuBaoLockView extends BaseLockView {
     }
 
     @Override
+    public void onDestroy() {
+
+    }
+
+    @Override
     public void onStateError(Canvas canvas) {
         // 绘制外圆
         paint.setColor(colorError);

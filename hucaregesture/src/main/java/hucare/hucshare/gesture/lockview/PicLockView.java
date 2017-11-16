@@ -54,8 +54,7 @@ public class PicLockView extends BaseLockView {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    public void onDestroy() {
         bmp1.recycle();
         bmp2.recycle();
         bmp3.recycle();
@@ -63,4 +62,5 @@ public class PicLockView extends BaseLockView {
         bmp2 = null;
         bmp3 = null;
     }
+
 }

@@ -6,7 +6,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hucare.hucshare.gesture.base.IBaseLine;
+import hucare.hucshare.gesture.base.ILockView;
 import hucare.hucshare.gesture.base.OnGestureCompleteListener;
 import hucare.hucshare.gesture.base.OnGestureVerifyListener;
 
@@ -45,20 +49,26 @@ public class GestureLockView extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        if (baseLineView != null && !isInit) {
-            isInit = true;
-            baseLineView.initLockViews(this);
-            this.addView((View) baseLineView);
-        }
-
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
         width = height = width > height ? height : width;
-        setMeasuredDimension(width, height);
-
         pointWidth = (int) ((width - innerMargin * 2 - outerMargin * 2) / (3.0));
+
+        if (baseLineView != null && !isInit) {
+            isInit = true;
+            List<ILockView> lockViews = new ArrayList<>();
+            for (int i = 0; i < 9; i++) {
+                ILockView lockPointView = GestureLockHelper.getInstance().getLockView(getContext());
+                lockPointView.setId(i + 1);
+                this.addView((View) lockPointView);
+                lockViews.add(lockPointView);
+            }
+            this.addView((View) baseLineView);
+            baseLineView.initLockViews(lockViews, pointWidth);
+        }
+
+        setMeasuredDimension(width, height);
 
         if (getChildCount() > 0) {
             for (int i = 0; i < getChildCount(); i++) {

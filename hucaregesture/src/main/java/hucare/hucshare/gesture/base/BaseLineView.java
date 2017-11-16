@@ -1,6 +1,7 @@
 package hucare.hucshare.gesture.base;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,36 +12,25 @@ import hucare.hucshare.gesture.GestureLockHelper;
 
 /**
  * @author huzeliang
- * 2017-11-14 18:27:04
+ *         2017-11-14 18:27:04
  */
 public abstract class BaseLineView extends View implements IBaseLine {
 
     protected List<ILockView> lockViews;
-    protected StringBuilder passWordSb;
     protected String verifyPassword;
     protected OnGestureVerifyListener onGestureVerifyListener;
     protected OnGestureCompleteListener onGestureCompleteListener;
-    protected List<Integer> chooseList = new ArrayList<Integer>();
-    private int padding = 20;
+    private int padding = 0;
+    private int pointWidth = 0;
 
     public BaseLineView(Context context) {
         super(context);
     }
 
     @Override
-    public void initLockViews(ViewGroup viewGroup) {
-        if (lockViews == null) {
-            lockViews = new ArrayList<ILockView>();
-
-            for (int i = 0; i < 9; i++) {
-                ILockView lockPointView = GestureLockHelper.getInstance().getLockView(getContext());
-                lockPointView.setId(i + 1);
-                lockViews.add(lockPointView);
-                if (viewGroup != null) {
-                    viewGroup.addView(lockPointView.getView());
-                }
-            }
-        }
+    public void initLockViews(List<ILockView> lockViews, int width) {
+        this.lockViews = lockViews;
+        pointWidth = width;
     }
 
     @Override
@@ -64,6 +54,9 @@ public abstract class BaseLineView extends View implements IBaseLine {
     }
 
     private boolean checkPositionInChild(ILockView child, int x, int y) {
+        if (padding == 0) {
+            padding = (int) (pointWidth * 0.15);
+        }
         if (x >= child.getLeft() + padding && x <= child.getRight() - padding && y >= child.getTop() + padding && y <= child.getBottom() - padding) {
             return true;
         }
@@ -73,4 +66,6 @@ public abstract class BaseLineView extends View implements IBaseLine {
     public void setPadding(int padding) {
         this.padding = padding;
     }
+
+
 }
