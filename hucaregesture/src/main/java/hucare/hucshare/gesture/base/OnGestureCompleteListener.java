@@ -9,5 +9,5 @@ package hucare.hucshare.gesture.base;
  * @since ***
  */
 public interface OnGestureCompleteListener {
-    void onOutputPassword(String password);
+    boolean onOutputPassword(String password);
 }

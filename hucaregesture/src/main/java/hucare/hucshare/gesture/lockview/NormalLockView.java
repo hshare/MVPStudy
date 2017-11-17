@@ -21,7 +21,7 @@ public class NormalLockView extends BaseLockView {
     private float innerCircleRadiusRate = 0.3F;
     private int colorNormal = 0xFFAAAAAA;
     private int colorSelected = 0xFF000000;
-    private int colorError = 0xFFFF00FF;
+    private int colorError = 0xFFFF0000;
 
     public NormalLockView(Context context) {
         super(context);

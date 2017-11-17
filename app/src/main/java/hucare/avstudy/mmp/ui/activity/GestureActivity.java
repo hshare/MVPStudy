@@ -29,21 +29,25 @@ public class GestureActivity extends Activity {
         gestureLockView = (GestureLockView) findViewById(R.id.guvMy);
         gestureLockView.setOnGestureCompleteListener(new OnGestureCompleteListener() {
             @Override
-            public void onOutputPassword(String password) {
+            public boolean onOutputPassword(String password) {
                 Toast.makeText(GestureActivity.this, "" + password, Toast.LENGTH_SHORT).show();
+                if (password.equals("1,2,3,6")) {
+                    return true;
+                }
+                return false;
             }
         });
-        gestureLockView.setOnGestureVerifyListener("1,2,3,6", new OnGestureVerifyListener() {
-            @Override
-            public void onSuccess() {
-                Toast.makeText(GestureActivity.this, "onSuccess", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError() {
-                Toast.makeText(GestureActivity.this, "onError", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        gestureLockView.setOnGestureVerifyListener("1,2,3,6", new OnGestureVerifyListener() {
+//            @Override
+//            public void onSuccess() {
+//                Toast.makeText(GestureActivity.this, "onSuccess", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError() {
+//                Toast.makeText(GestureActivity.this, "onError", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
